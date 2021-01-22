@@ -1,18 +1,36 @@
 package com.thoughtmechanix.licenses.model;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@Entity
+@Table(name = "licenses")
 public class License {
 
-  private String id;
+  @Id
+  @Column(name = "license_id", nullable = false)
+  private String licenseId;
+
+  @Column(name = "name", nullable = false)
   private String name;
+
+  @Column(name = "type", nullable = false)
   private String type;
+
+  @Column(name = "organization_id", nullable = false)
   private String organizationId;
 
-  public String getId() {
-    return id;
+  @Column(name = "comment")
+  private String comment;
+
+  public String getLicenseId() {
+    return licenseId;
   }
 
   public License withId(String licenseId) {
-    this.id = licenseId;
+    this.licenseId = licenseId;
     return this;
   }
 
@@ -40,6 +58,15 @@ public class License {
 
   public License withOrganizationId(String organizationId) {
     this.organizationId = organizationId;
+    return this;
+  }
+
+  public String getComment() {
+    return comment;
+  }
+
+  public License withComment(String comment) {
+    this.comment = comment;
     return this;
   }
 }
