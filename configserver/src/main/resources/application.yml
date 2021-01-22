@@ -1,0 +1,10 @@
+server:
+  port: 8888
+spring:
+  profiles:
+    active: native
+  cloud:
+    config:
+      server:
+        native:
+          searchLocations: file:///home/melvin/Documents/Study/Microservices/spring-microservices-in-action/configserver/src/main/resources/config/licenses
