@@ -1,9 +1,11 @@
 package com.thoughtmechanix.licenses.model;
 
+import java.util.Optional;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 @Entity
 @Table(name = "licenses")
@@ -24,6 +26,9 @@ public class License {
 
   @Column(name = "comment")
   private String comment;
+
+  @Transient
+  private Organization organization;
 
   public String getLicenseId() {
     return licenseId;
@@ -65,8 +70,17 @@ public class License {
     return comment;
   }
 
+  public Organization getOrganization() {
+    return organization;
+  }
+
   public License withComment(String comment) {
     this.comment = comment;
+    return this;
+  }
+
+  public License withOrganization(Organization organization) {
+    this.organization = organization;
     return this;
   }
 }

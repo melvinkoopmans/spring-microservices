@@ -1,6 +1,9 @@
 package com.thoughtmechanix.licenses.controllers;
 
+import com.netflix.discovery.converters.Auto;
+import com.thoughtmechanix.licenses.OrganizationRestTemplateClient;
 import com.thoughtmechanix.licenses.model.License;
+import com.thoughtmechanix.licenses.model.Organization;
 import com.thoughtmechanix.licenses.services.LicenseService;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,6 +19,9 @@ public class LicenseServiceController {
   @Autowired
   private LicenseService licenseService;
 
+  @Autowired
+  private OrganizationRestTemplateClient organizationRestTemplateClient;
+
   @RequestMapping(value = "/", method = RequestMethod.GET)
   public List<License> getLicenses(@PathVariable("organizationId") String organizationId) {
     return licenseService.getLicenseByOrg(organizationId);
@@ -26,6 +32,10 @@ public class LicenseServiceController {
       @PathVariable("organizationId") String organizationId,
       @PathVariable("licenseId") String licenseId
   ) {
-    return licenseService.getLicense(organizationId, licenseId);
+    Organization organization = organizationRestTemplateClient.getOrganization(organizationId);
+
+    return licenseService
+        .getLicense(organizationId, licenseId)
+        .withOrganization(organization);
   }
 }
