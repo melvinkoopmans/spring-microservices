@@ -12,8 +12,18 @@ public class Organization {
     return organizationId;
   }
 
+  public Organization setOrganizationId(String organizationId) {
+    this.organizationId = organizationId;
+    return this;
+  }
+
   public String getName() {
     return name;
+  }
+
+  public Organization setName(String name) {
+    this.name = name;
+    return this;
   }
 
   public String getContactName() {
