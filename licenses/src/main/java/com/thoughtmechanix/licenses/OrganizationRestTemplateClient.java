@@ -1,6 +1,7 @@
 package com.thoughtmechanix.licenses;
 
 import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
+import com.netflix.hystrix.contrib.javanica.annotation.HystrixProperty;
 import com.thoughtmechanix.licenses.model.Organization;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpMethod;
@@ -14,7 +15,13 @@ public class OrganizationRestTemplateClient {
   @Autowired
   RestTemplate restTemplate;
 
-  @HystrixCommand(fallbackMethod = "buildFallbackOrganization")
+  @HystrixCommand(
+      fallbackMethod = "buildFallbackOrganization",
+      threadPoolKey = "organizationThreadPool",
+      threadPoolProperties =
+          {@HystrixProperty(name = "coreSize", value = "30"),
+          @HystrixProperty(name = "maxQueueSize", value="10")}
+  )
   public Organization getOrganization(String organizationId) {
     Utils.randomlyRunLong();
 
