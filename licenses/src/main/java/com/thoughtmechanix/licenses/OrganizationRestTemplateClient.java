@@ -20,7 +20,13 @@ public class OrganizationRestTemplateClient {
       threadPoolKey = "organizationThreadPool",
       threadPoolProperties =
           {@HystrixProperty(name = "coreSize", value = "30"),
-          @HystrixProperty(name = "maxQueueSize", value="10")}
+          @HystrixProperty(name = "maxQueueSize", value="10")},
+      commandProperties =
+          {@HystrixProperty(name = "circuitBreaker.requestVolumeThreshold", value="10"),
+          @HystrixProperty(name = "circuitBreaker.errorThresholdPercentage", value="75"),
+          @HystrixProperty(name = "circuitBreaker.sleepWindowInMilliseconds", value="7000"),
+          @HystrixProperty(name = "metrics.rollingStats.timeInMilliseconds", value = "15000"),
+          @HystrixProperty(name = "metrics.rollingStats.numBuckets", value = "5")}
   )
   public Organization getOrganization(String organizationId) {
     Utils.randomlyRunLong();
