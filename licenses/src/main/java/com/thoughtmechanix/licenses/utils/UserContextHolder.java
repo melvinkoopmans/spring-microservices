@@ -17,4 +17,8 @@ public class UserContextHolder {
   public static final UserContext createEmptyContext() {
     return new UserContext();
   }
+
+  public static final void setContext(UserContext context) {
+    userContext.set(context);
+  }
 }
