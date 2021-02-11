@@ -1,0 +1,8 @@
+zuul:
+  prefix: /api
+  ignored-services: '*'
+  routes:
+    organizations: /organizations/**
+    licenses: /licenses/**
+  debug:
+    request: true
