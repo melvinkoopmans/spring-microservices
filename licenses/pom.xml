@@ -58,6 +58,11 @@
       <artifactId>hystrix-javanica</artifactId>
       <version>1.5.9</version>
     </dependency>
+    <dependency>
+      <groupId>com.thoughtmechanix</groupId>
+      <artifactId>smia-lib</artifactId>
+      <version>1.0.1</version>
+    </dependency>
   </dependencies>
   <description>Licensing Service</description>
   <groupId>com.thoughtmechanix</groupId>

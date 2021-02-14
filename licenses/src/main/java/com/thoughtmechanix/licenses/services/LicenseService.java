@@ -5,7 +5,7 @@ import com.thoughtmechanix.licenses.Utils;
 import com.thoughtmechanix.licenses.config.ServiceConfig;
 import com.thoughtmechanix.licenses.model.License;
 import com.thoughtmechanix.licenses.repository.LicenseRepository;
-import com.thoughtmechanix.licenses.utils.UserContextHolder;
+import com.thoughtmechanix.common.UserContextHolder;
 import java.util.List;
 import java.util.UUID;
 import org.slf4j.Logger;

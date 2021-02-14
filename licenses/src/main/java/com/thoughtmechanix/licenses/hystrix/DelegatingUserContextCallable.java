@@ -1,7 +1,7 @@
 package com.thoughtmechanix.licenses.hystrix;
 
-import com.thoughtmechanix.licenses.utils.UserContext;
-import com.thoughtmechanix.licenses.utils.UserContextHolder;
+import com.thoughtmechanix.common.UserContext;
+import com.thoughtmechanix.common.UserContextHolder;
 import java.util.concurrent.Callable;
 
 public final class DelegatingUserContextCallable<V> implements Callable<V> {

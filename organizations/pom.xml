@@ -47,6 +47,11 @@
       <groupId>org.springframework.cloud</groupId>
       <artifactId>spring-cloud-starter-eureka</artifactId>
     </dependency>
+    <dependency>
+      <groupId>com.thoughtmechanix</groupId>
+      <artifactId>smia-lib</artifactId>
+      <version>1.0.1</version>
+    </dependency>
   </dependencies>
 
   <parent>
