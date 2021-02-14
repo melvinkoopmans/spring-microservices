@@ -14,4 +14,4 @@ Below you'll find a listing of all the services and what they do:
 | licenses | This service manages licenses of various organizations. It communicates with the organization service to obtain data from the organizations. |
 | organizations | This service manages all the organizations. |
 | zuulserver | This service acts as a API Gateway using [Netflix Zuul](https://github.com/Netflix/zuul). Zuul interacts with the Eureka server to discover services in the distributed system. It's also the place where cross-cutting concerns are organized, such as setting correlation ID's for distributed tracing and authentication. |
-
+| authentication | This service is responsible for authentication and authorization of users using Oauth2. |
