@@ -8,7 +8,7 @@ I created a seperate library for sharing infrastructure-style code between micro
 Below you'll find a listing of all the services and what they do:
 
 | Service | Description  |
-|------------------------|
+|---------|--------------|
 | configserver | The configuration server uses [Spring Cloud Config](https://cloud.spring.io/spring-cloud-config/reference/html/) to provide externalized configuration in the distributed system of microservices. |
 | eurekaserver | This service allows for Service Registration and Discovery using [Netflix Eureka](https://github.com/Netflix/eureka) |
 | licenses | This service manages licenses of various organizations. It communicates with the organization service to obtain data from the organizations |
