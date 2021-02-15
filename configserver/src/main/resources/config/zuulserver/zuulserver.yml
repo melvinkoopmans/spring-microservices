@@ -6,3 +6,4 @@ zuul:
     licenses: /licenses/**
   debug:
     request: true
+  sensitiveHeaders: Cookie,Set-Cookie
