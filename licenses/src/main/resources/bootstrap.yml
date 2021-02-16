@@ -13,3 +13,5 @@ logging:
     org:
       springframework:
         web: DEBUG
+    com:
+      thoughtmechanix: DEBUG

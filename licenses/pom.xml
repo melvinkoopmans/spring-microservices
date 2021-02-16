@@ -61,7 +61,15 @@
     <dependency>
       <groupId>com.thoughtmechanix</groupId>
       <artifactId>smia-lib</artifactId>
-      <version>1.0.2</version>
+      <version>1.0.3</version>
+    </dependency>
+    <dependency>
+      <groupId>org.springframework.cloud</groupId>
+      <artifactId>spring-cloud-security</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.springframework.security.oauth</groupId>
+      <artifactId>spring-security-oauth2</artifactId>
     </dependency>
   </dependencies>
   <description>Licensing Service</description>
@@ -80,8 +88,8 @@
   </parent>
 
   <properties>
-    <maven.compiler.source>11</maven.compiler.source>
-    <maven.compiler.target>11</maven.compiler.target>
+    <maven.compiler.source>1.8</maven.compiler.source>
+    <maven.compiler.target>1.8</maven.compiler.target>
   </properties>
 
   <version>1.0-SNAPSHOT</version>

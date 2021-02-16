@@ -1,6 +1,6 @@
 package com.thoughtmechanix.licenses.controllers;
 
-import com.thoughtmechanix.licenses.OrganizationRestTemplateClient;
+import com.thoughtmechanix.licenses.clients.OrganizationRestTemplateClient;
 import com.thoughtmechanix.licenses.model.License;
 import com.thoughtmechanix.licenses.model.Organization;
 import com.thoughtmechanix.licenses.services.LicenseService;
