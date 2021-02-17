@@ -1,7 +1,7 @@
-# Spring Microservices in Action
+# Spring Microservices
 
 The goal of this project is to learn how to build microservice-based applications. I opted for Java due to the rich ecosystem offered by Spring.
-For this project I follow the book [Spring Microservices in Action](https://www.amazon.com/Spring-Microservices-Action-John-Carnell/dp/1617293989).
+For this project I followed the book [Spring Microservices in Action](https://www.amazon.com/Spring-Microservices-Action-John-Carnell/dp/1617293989).
 
 I created a seperate library for sharing infrastructure-style code between microservices, which can be found in the [smia-lib](https://github.com/melvinkoopmans/smia-lib/) repository.
 
