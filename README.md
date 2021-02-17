@@ -9,6 +9,7 @@ Below you'll find a listing of all the directories / services and what they do:
 
 | Service | Description  |
 |---------|--------------|
+| common | Shared library used by all the microservices for infrastructure-style code. |
 | configserver | The configuration server uses [Spring Cloud Config](https://cloud.spring.io/spring-cloud-config/reference/html/) to provide externalized configuration in the distributed system of microservices. |
 | config | Contains all the configuration files used by the configserver. |
 | eurekaserver | This service allows for Service Registration and Discovery using [Netflix Eureka](https://github.com/Netflix/eureka). |
