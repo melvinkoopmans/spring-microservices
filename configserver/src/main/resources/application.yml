@@ -6,5 +6,6 @@ spring:
   cloud:
     config:
       server:
-        native:
-          searchLocations: file:///home/melvin/Documents/Study/Microservices/spring-microservices-in-action/configserver/src/main/resources/config/licenses, file:///home/melvin/Documents/Study/Microservices/spring-microservices-in-action/configserver/src/main/resources/config/organizations, file:///home/melvin/Documents/Study/Microservices/spring-microservices-in-action/configserver/src/main/resources/config/zuulserver
+        git:
+          uri: git@github.com:melvinkoopmans/spring-microservices.git
+          search-paths: config
