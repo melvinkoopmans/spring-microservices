@@ -7,15 +7,29 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.oauth2.config.annotation.configurers.ClientDetailsServiceConfigurer;
 import org.springframework.security.oauth2.config.annotation.web.configuration.AuthorizationServerConfigurerAdapter;
 import org.springframework.security.oauth2.config.annotation.web.configurers.AuthorizationServerEndpointsConfigurer;
+import org.springframework.security.oauth2.config.annotation.web.configurers.AuthorizationServerSecurityConfigurer;
+import org.springframework.security.oauth2.provider.token.TokenStore;
+import org.springframework.security.oauth2.provider.token.store.JwtAccessTokenConverter;
 
 @Configuration
 public class OAuth2Config extends AuthorizationServerConfigurerAdapter {
 
-  @Autowired
-  private AuthenticationManager authenticationManager;
+  private final AuthenticationManager authenticationManager;
 
-  @Autowired
-  private UserDetailsService userDetailsService;
+  private final UserDetailsService userDetailsService;
+
+  private final JwtAccessTokenConverter jwtAccessTokenConverter;
+
+  private final TokenStore tokenStore;
+
+  public OAuth2Config(
+      AuthenticationManager authenticationManager, UserDetailsService userDetailsService,
+      JwtAccessTokenConverter jwtAccessTokenConverter, TokenStore tokenStore) {
+    this.authenticationManager = authenticationManager;
+    this.userDetailsService = userDetailsService;
+    this.jwtAccessTokenConverter = jwtAccessTokenConverter;
+    this.tokenStore = tokenStore;
+  }
 
   @Override
   public void configure(ClientDetailsServiceConfigurer clients) throws Exception {
@@ -30,6 +44,8 @@ public class OAuth2Config extends AuthorizationServerConfigurerAdapter {
   public void configure(AuthorizationServerEndpointsConfigurer endpoints) throws Exception {
     endpoints
         .authenticationManager(authenticationManager)
-        .userDetailsService(userDetailsService);
+        .userDetailsService(userDetailsService)
+        .accessTokenConverter(jwtAccessTokenConverter)
+        .tokenStore(tokenStore);
   }
 }
