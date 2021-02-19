@@ -6,7 +6,7 @@
 
     <groupId>com.thoughtmechanix</groupId>
     <artifactId>smia-lib</artifactId>
-    <version>1.0.3</version>
+    <version>1.0.4</version>
 
     <parent>
         <artifactId>spring-boot-starter-parent</artifactId>

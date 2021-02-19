@@ -20,6 +20,13 @@ public class UserContextInterceptor implements ClientHttpRequestInterceptor {
             .getCorrelationId()
     );
 
+    headers.add(
+        UserContext.AUTH_TOKEN,
+        UserContextHolder
+          .getContext()
+          .getAuthToken()
+    );
+
     return execution.execute(request, body);
   }
 }
