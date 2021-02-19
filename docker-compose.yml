@@ -1,0 +1,38 @@
+version: '3'
+
+services:
+    database:
+        image: mysql:5.7
+        environment:
+            - MYSQL_DATABASE=main
+            - MYSQL_USER=spring
+            - MYSQL_PASSWORD=spring
+            - MYSQL_ROOT_PASSWORD=root
+        ports:
+            - '3306'
+    configserver:
+        build: configserver/
+    zuulserver:
+        build: zuulserver/
+        ports:
+            - '5555:5555'
+        depends_on:
+            -  configserver
+    authentication:
+        build: authentication/
+        depends_on:
+            - configserver
+    eurekaserver:
+        build: eurekaserver/
+        depends_on:
+            - configserver
+    licenses:
+        build: licenses/
+        depends_on:
+            - configserver
+            - database
+    organizations:
+        build: organizations
+        depends_on:
+            - configserver
+            - database
