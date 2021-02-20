@@ -11,6 +11,10 @@ services:
             - '3306'
     configserver:
         build: configserver/
+        environment:
+            ENCRYPT_KEY: 'mysecret'
+        ports:
+            - '8888:8888'
     zuulserver:
         build: zuulserver/
         ports:
