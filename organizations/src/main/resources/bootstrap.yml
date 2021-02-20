@@ -6,7 +6,7 @@ spring:
       default
   cloud:
     config:
-      uri: http://localhost:8888
+      uri: http://configserver:8888
 
 logging:
   level:

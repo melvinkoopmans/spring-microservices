@@ -20,9 +20,11 @@ services:
         ports:
             - '5555:5555'
         depends_on:
-            -  configserver
+            - configserver
+            - eurekaserver
     authentication:
         build: authentication/
+        restart: on-failure
         depends_on:
             - configserver
     eurekaserver:
@@ -33,11 +35,15 @@ services:
             - '8761:8761'
     licenses:
         build: licenses/
+        restart: on-failure
         depends_on:
             - configserver
             - database
+            - eurekaserver
     organizations:
         build: organizations
+        restart: on-failure
         depends_on:
             - configserver
             - database
+            - eurekaserver
