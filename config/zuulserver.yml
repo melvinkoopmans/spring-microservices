@@ -4,6 +4,7 @@ zuul:
   routes:
     organizations: /organizations/**
     licenses: /licenses/**
+    authentication: /authentication/**
   debug:
     request: true
   sensitiveHeaders: Cookie,Set-Cookie

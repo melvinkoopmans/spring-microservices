@@ -59,6 +59,10 @@
       <artifactId>dockerfile-maven-plugin</artifactId>
       <version>1.4.13</version>
     </dependency>
+    <dependency>
+      <groupId>org.springframework.cloud</groupId>
+      <artifactId>spring-cloud-starter-eureka</artifactId>
+    </dependency>
   </dependencies>
 
   <properties>
