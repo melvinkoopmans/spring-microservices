@@ -7,7 +7,6 @@ services:
             - MYSQL_DATABASE=main
             - MYSQL_USER=spring
             - MYSQL_PASSWORD=spring
-            - MYSQL_ROOT_PASSWORD=root
         ports:
             - '3306'
     configserver:
