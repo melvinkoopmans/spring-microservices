@@ -1,0 +1,15 @@
+logging:
+  level:
+    org:
+      springframework:
+        cloud: DEBUG
+
+spring:
+  profiles:
+    active: native
+  cloud:
+    config:
+      server:
+        git:
+          uri: git@github.com:melvinkoopmans/spring-microservices.git
+          search-paths: config
