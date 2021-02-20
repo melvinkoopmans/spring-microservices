@@ -5,11 +5,12 @@ logging:
         cloud: DEBUG
 
 spring:
-  profiles:
-    active: native
+  application:
+    name: configserver
   cloud:
     config:
       server:
         git:
-          uri: git@github.com:melvinkoopmans/spring-microservices.git
+          uri: https://github.com/melvinkoopmans/spring-microservices
           search-paths: config
+          default-label: main
