@@ -29,6 +29,8 @@ services:
         build: eurekaserver/
         depends_on:
             - configserver
+        ports:
+            - '8761:8761'
     licenses:
         build: licenses/
         depends_on:
