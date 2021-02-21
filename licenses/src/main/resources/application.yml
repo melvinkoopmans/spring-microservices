@@ -11,7 +11,7 @@ spring:
   cloud:
     stream:
       bindings:
-        input:
+        inboundOrganizationChanges:
           destination: orgChangeTopic
           content-type: application/json
           group: licensingGroup

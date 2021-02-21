@@ -22,6 +22,11 @@ public class OrganizationRedisRepositoryImpl implements OrganizationRedisReposit
   }
 
   @Override
+  public void removeOrganization(String organizationId) {
+    hashOperations.delete(HASH_NAME, organizationId);
+  }
+
+  @Override
   public Organization findOrganization(String organizationId) {
     return hashOperations.get(HASH_NAME, organizationId);
   }
