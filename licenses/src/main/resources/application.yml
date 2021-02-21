@@ -7,6 +7,19 @@ eureka:
     serviceUrl:
       defaultZone: http://eurekaserver:8761/eureka/
 
+spring:
+  cloud:
+    stream:
+      bindings:
+        input:
+          destination: orgChangeTopic
+          content-type: application/json
+          group: licensingGroup
+      kafka:
+        binder:
+          zkNodes: zookeeper
+          brokers: kafka:29092
+
 security:
   oauth2:
     resource:

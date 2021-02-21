@@ -1,4 +1,4 @@
-package com.thoughtmechanix.organizations.events.models;
+package com.thoughtmechanix.licenses.events.model;
 
 public class OrganizationChangeModel {
 
@@ -6,6 +6,10 @@ public class OrganizationChangeModel {
   private String action;
   private String organizationId;
   private String correlationId;
+
+  public OrganizationChangeModel() {
+    super();
+  }
 
   public OrganizationChangeModel(String type, String action, String organizationId, String correlationId) {
     super();
