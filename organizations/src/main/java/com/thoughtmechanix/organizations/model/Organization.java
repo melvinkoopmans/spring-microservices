@@ -25,6 +25,12 @@ public class Organization {
   @Column(name = "contact_phone")
   private String contactPhone;
 
+  public Organization setOrganizationId(String organizationId) {
+    this.organizationId = organizationId;
+
+    return this;
+  }
+
   public String getOrganizationId() {
     return organizationId;
   }
@@ -35,6 +41,12 @@ public class Organization {
 
   public String getContactName() {
     return contactName;
+  }
+
+  public Organization setContactName(String contactName) {
+    this.contactName = contactName;
+
+    return this;
   }
 
   public String getContactEmail() {
