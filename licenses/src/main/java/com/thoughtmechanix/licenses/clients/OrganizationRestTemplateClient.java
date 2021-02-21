@@ -48,7 +48,7 @@ public class OrganizationRestTemplateClient {
 
     if (organization != null) {
       logger.debug("Using cached version of organization {}", organizationId);
-      
+
       return organization;
     }
 
@@ -85,7 +85,7 @@ public class OrganizationRestTemplateClient {
       return null;
     }
 
-    if (organizationId == null) {
+    if (organization == null) {
       logger.debug("Organization not found in cache.");
     } else {
       logger.debug("Found organization {} in Redis cache.", organizationId);
@@ -98,7 +98,11 @@ public class OrganizationRestTemplateClient {
     try {
       redisRepository.saveOrganization(organization);
     } catch (Exception e) {
-      logger.debug("Failed to cache organization {} to Redis.", organization);
+      logger.debug(
+          "Failed to cache organization {} to Redis.\nException: {}",
+          organization.getOrganizationId(),
+          e.getMessage()
+      );
     }
   }
 }
