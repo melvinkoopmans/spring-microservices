@@ -2,6 +2,7 @@ package com.thoughtmechanix.organizations.controller;
 
 import com.thoughtmechanix.organizations.model.Organization;
 import com.thoughtmechanix.organizations.repository.OrganizationRepository;
+import com.thoughtmechanix.organizations.service.OrganizationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -15,6 +16,9 @@ public class OrganizationController {
 
   @Autowired
   private OrganizationRepository repository;
+
+  @Autowired
+  private OrganizationService organizationService;
 
   @RequestMapping(value = "/", method = RequestMethod.GET)
   public Iterable<Organization> getOrganizations() {
@@ -33,7 +37,7 @@ public class OrganizationController {
   ) {
     Organization organization = repository.findOne(organizationId);
     organization.setContactName(organizationDTO.getContactName());
-    repository.save(organization);
+    organizationService.save(organization);
 
     return organization;
   }
