@@ -4,6 +4,7 @@ import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
 import com.netflix.hystrix.contrib.javanica.annotation.HystrixProperty;
 import com.thoughtmechanix.licenses.Utils;
 import com.thoughtmechanix.licenses.model.Organization;
+import com.thoughtmechanix.licenses.repository.OrganizationRedisRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,6 +17,9 @@ import org.springframework.stereotype.Component;
 public class OrganizationRestTemplateClient {
 
   Logger logger = LoggerFactory.getLogger(OrganizationRestTemplateClient.class);
+
+  @Autowired
+  OrganizationRedisRepository redisRepository;
 
   @Autowired
   OAuth2RestTemplate restTemplate;
@@ -40,6 +44,14 @@ public class OrganizationRestTemplateClient {
   public Organization getOrganization(String organizationId) {
     Utils.randomlyRunLong();
 
+    Organization organization = getCachedOrganization(organizationId);
+
+    if (organization != null) {
+      logger.debug("Using cached version of organization {}", organizationId);
+      
+      return organization;
+    }
+
     logger.debug("Making call to organizations through Zuul.");
 
     ResponseEntity<Organization> restExchange = restTemplate.exchange(
@@ -50,12 +62,43 @@ public class OrganizationRestTemplateClient {
 
     logger.debug("Zuul replied with status code {}", restExchange.getStatusCode());
 
-    return restExchange.getBody();
+    organization = restExchange.getBody();
+    this.cacheOrganization(organization);
+
+    return organization;
   }
 
   private Organization buildFallbackOrganization(String organizationId) {
     return new Organization()
         .setOrganizationId(organizationId)
         .setName("Fallback organization");
+  }
+
+  private Organization getCachedOrganization(String organizationId) {
+    Organization organization;
+
+    try {
+      organization = redisRepository.findOrganization(organizationId);
+    } catch (Exception e) {
+      logger.debug("Unable to fetch organization {} from cache", organizationId);
+
+      return null;
+    }
+
+    if (organizationId == null) {
+      logger.debug("Organization not found in cache.");
+    } else {
+      logger.debug("Found organization {} in Redis cache.", organizationId);
+    }
+
+    return organization;
+  }
+
+  private void cacheOrganization(Organization organization) {
+    try {
+      redisRepository.saveOrganization(organization);
+    } catch (Exception e) {
+      logger.debug("Failed to cache organization {} to Redis.", organization);
+    }
   }
 }

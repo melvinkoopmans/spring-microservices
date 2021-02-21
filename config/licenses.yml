@@ -7,3 +7,5 @@ spring.datasource.password: "{cipher}e6dfc193a83202740deb3a8ed209af5653ad31e9ecd
 spring.datasource.testWhileIdle: "true"
 spring.datasource.validationQuery: "SELECT 1"
 spring.jpa.properties.hibernate.dialect: "org.hibernate.dialect.MySQL5InnoDBDialect"
+redis.hostname: "redis"
+redis.port: 6379
