@@ -8,6 +8,8 @@ import com.thoughtmechanix.licenses.repository.OrganizationRedisRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cloud.sleuth.Span;
+import org.springframework.cloud.sleuth.Tracer;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.oauth2.client.OAuth2RestTemplate;
@@ -23,6 +25,9 @@ public class OrganizationRestTemplateClient {
 
   @Autowired
   OAuth2RestTemplate restTemplate;
+
+  @Autowired
+  Tracer tracer;
 
   /**
    * TODO: Pass SecurityContext to thread, so we don't have to use semaphore.
@@ -77,12 +82,18 @@ public class OrganizationRestTemplateClient {
   private Organization getCachedOrganization(String organizationId) {
     Organization organization;
 
+    Span span = tracer.createSpan("getCachedOrganization");
+
     try {
       organization = redisRepository.findOrganization(organizationId);
     } catch (Exception e) {
       logger.debug("Unable to fetch organization {} from cache", organizationId);
 
       return null;
+    } finally {
+      span.tag("peer.service", "redis");
+      span.logEvent(Span.CLIENT_RECV);
+      tracer.close(span);
     }
 
     if (organization == null) {
