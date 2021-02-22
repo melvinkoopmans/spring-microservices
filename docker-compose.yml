@@ -92,3 +92,8 @@ services:
             PORT: 9021
     redis:
         image: redis:5-alpine
+    logspout:
+        image: gliderlabs/logspout
+        command: "syslog://${PAPERTRAIL_DSN}"
+        volumes:
+            - /var/run/docker.sock:/var/run/docker.sock
