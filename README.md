@@ -15,9 +15,12 @@ Below you'll find a listing of all the directories / services and what they do:
 | organizations | This service manages all the organizations. |
 | zuulserver | This service acts as a API Gateway using [Netflix Zuul](https://github.com/Netflix/zuul). Zuul interacts with the Eureka server to discover services in the distributed system. It's also the place where cross-cutting concerns are organized, such as setting correlation ID's for distributed tracing and authentication. |
 | authentication | This service is responsible for authentication and authorization of users using Oauth2. |
+| zipkinserver | Provides a [Zipkin](https://zipkin.io/) service for distributed tracing together with [Spring Cloud Sleuth](https://spring.io/projects/spring-cloud-sleuth) | 
 
 To run all of the services create a package for each of them and then run:
 
 ```bash
 $ docker-compose up -d
 ```
+
+I've used Confluent's images for their Kafka platform. You can access the Control Panel to manage your Kafka clusters by navigating to http://0.0.0.0:9021.
