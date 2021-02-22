@@ -5,9 +5,11 @@
   <modelVersion>4.0.0</modelVersion>
 
   <groupId>com.thoughtmechanix</groupId>
-  <artifactId>zuulserver</artifactId>
+  <description>Zipkin server</description>
+
+  <artifactId>zipkinserver</artifactId>
   <version>1.0-SNAPSHOT</version>
-  <description>Zuul Service Gateway</description>
+  <packaging>jar</packaging>
 
   <parent>
     <artifactId>spring-boot-starter-parent</artifactId>
@@ -30,37 +32,17 @@
 
   <dependencies>
     <dependency>
-      <artifactId>spring-boot-starter-web</artifactId>
-      <groupId>org.springframework.boot</groupId>
+      <groupId>io.zipkin.java</groupId>
+      <artifactId>zipkin-server</artifactId>
     </dependency>
     <dependency>
-      <artifactId>spring-boot-starter-actuator</artifactId>
-      <groupId>org.springframework.boot</groupId>
-    </dependency>
-    <dependency>
-      <groupId>org.springframework.cloud</groupId>
-      <artifactId>spring-cloud-starter-zuul</artifactId>
-    </dependency>
-    <dependency>
-      <groupId>org.springframework.cloud</groupId>
-      <artifactId>spring-cloud-starter-eureka</artifactId>
-    </dependency>
-    <dependency>
-      <groupId>org.springframework.cloud</groupId>
-      <artifactId>spring-cloud-config-client</artifactId>
+      <groupId>io.zipkin.java</groupId>
+      <artifactId>zipkin-autoconfigure-ui</artifactId>
     </dependency>
     <dependency>
       <groupId>com.spotify</groupId>
       <artifactId>dockerfile-maven-plugin</artifactId>
       <version>1.4.13</version>
-    </dependency>
-    <dependency>
-      <groupId>org.springframework.cloud</groupId>
-      <artifactId>spring-cloud-starter-sleuth</artifactId>
-    </dependency>
-    <dependency>
-      <groupId>org.springframework.cloud</groupId>
-      <artifactId>spring-cloud-sleuth-zipkin</artifactId>
     </dependency>
   </dependencies>
 
@@ -90,7 +72,7 @@
             <manifest>
               <addClasspath>true</addClasspath>
               <classpathPrefix>lib/</classpathPrefix>
-              <mainClass>com.thoughtmechanix.zuulserver.ZuulServerApplication</mainClass>
+              <mainClass>com.thoughtmechanix.zipkinserver.Application</mainClass>
             </manifest>
           </archive>
         </configuration>
