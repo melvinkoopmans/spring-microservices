@@ -7,3 +7,5 @@ spring:
   cloud:
     config:
       uri: http://configserver:8888
+  zipkin:
+    base-url: http://zipkinserver:9411
